@@ -97,9 +97,9 @@ for iter in range(param['num_iter']):
 		
 		for k in range(param['figure_per_batch']):
 			plt.clf()
-			plt.plot(b[k, :, 0][m[k].bool()].detach(), b[k, :, 1][m[k].bool()].detach(), color = param['train_color'])
-			plt.plot(b[k, :, 0][train_m[k].bool()].detach(), b[k, :, 1][train_m[k].bool()].detach(), '.', color = param['train_color'])
-			plt.plot(b[k, :, 0][test_m[k].bool()].detach(), masked_output[k].detach(), color = param['test_color'], marker = '.')
+			plt.plot(b[k, :, 0][m[k].bool()].detach().data.cpu().numpy(), b[k, :, 1][m[k].bool()].detach().data.cpu().numpy(), color = param['train_color'])
+			plt.plot(b[k, :, 0][train_m[k].bool()].detach().data.cpu().numpy(), b[k, :, 1][train_m[k].bool()].detach().data.cpu().numpy(), '.', color = param['train_color'])
+			plt.plot(b[k, :, 0][test_m[k].bool()].detach().data.cpu().numpy(), masked_output[k].detach().data.cpu().numpy(), color = param['test_color'], marker = '.')
 			#plt.plot(b[k, :, 0][test_m[k].bool()].detach(), masked_output.reshape(param['batch_size'], param['total_points'] - param['obs_points'])[k].detach(), '.')
 			plt.savefig('fig/' + str(iter) + '_' + str(bn) + '_' + str(k) + '.jpg')
 			
