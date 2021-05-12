@@ -55,8 +55,8 @@ param = {
 	'train_color': 'dodgerblue',
 	'test_color': 'orange',
 }
-#if torch.cuda.is_available():
-#	param['device'] = torch.device('cuda:3')
+if torch.cuda.is_available():
+	param['device'] = torch.device('cuda:0')
 	
 print('Train on', param['device'])
 
